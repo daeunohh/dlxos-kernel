@@ -1,0 +1,2 @@
+export PATH=/home/min/a/ece695x/labs/common/dlxos/bin:/home/min/a/ece695x/labs/common/dlxos/bin:/home/min/a/oh411/.vscode-server/cli/servers/Stable-6f17636121051a53c88d3e605c491d22af2ba755/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/min/a/oh411/.dotnet/tools:.:/opt/thinlinc/bin:/opt/thinlinc/sbin
+export LD_LIBRARY_PATH=/home/min/a/ece695x/labs/common/gcc/lib

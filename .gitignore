@@ -1,0 +1,23 @@
+# Ignore VSCode remote server stuff
+.vscode/
+.vscode-server/
+.cache/
+
+# Object files
+*.o
+*.obj
+
+# Executables
+*.out
+*.exe
+*.elf
+dlxsim
+
+# Build artifacts
+*.d
+*.map
+*.log
+
+# Editor/IDE files
+.vscode/
+*.swp
