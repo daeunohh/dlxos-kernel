@@ -19,7 +19,6 @@
 int ProcessGetCodeInfo (const char *file, uint32 *startAddr, uint32 *codeStart, 
                         uint32 *codeSize, uint32 *dataStart, uint32 *dataSize);
 int ProcessGetFromFile (int fd, unsigned char *buf, uint32 *addr, int max);
-unsigned int Getpid();
 
 // Pointer to the current PCB.  This is used by the assembly language
 // routines for context switches.
@@ -659,8 +658,37 @@ ProcessGetFromFile (int fd, unsigned char *buf, uint32 *addr, int max)
   return (nbytes);
 }
 
+//----------------------------------------------------------------------
+//
+//	Getpid
+//
+//	Inputs:
+//	addr -	points to an integer that contains the address of
+//		the byte past that previously returned.  If this is the
+//		first call to this routine, *addr should be set to 0.
+//	fd -	File descriptor from which to read data.  The file format
+//		is the same as that used by the DLX simulator.
+//	buf -	points to a buffer that will receive data from the input
+//		file.  Note that the data is NOT 0-terminated, and may
+//		include any number of 0 bytes.
+//	max -	maximum length of data to return.  The routine collects data
+//		until either the address changes or it has read max bytes.
+//
+//	Returns the number of bytes actually stored into buf.  In addition,
+//	*addr is updated to point to the byte following the last byte in
+//	the buffer.
+//
+//	Load a file into memory.  The file format consists of a
+//	leading address, followed by a colon, followed by the data
+//	to go at that address.  If the address is omitted, the data
+//	follows that from the previous line of the file.
+//
+//----------------------------------------------------------------------
 unsigned int Getpid(){
-  
+  for (int i = 0; i < PROCESS_MAX_PROCS; i++){
+      if (strcmp(pcbs[i].name, currentPCB->name) == 0) return i;
+  }
+  return PROCESS_MAX_PROCS;
 }
 
 //----------------------------------------------------------------------
