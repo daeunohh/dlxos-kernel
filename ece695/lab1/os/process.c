@@ -684,9 +684,11 @@ ProcessGetFromFile (int fd, unsigned char *buf, uint32 *addr, int max)
 //	follows that from the previous line of the file.
 //
 //----------------------------------------------------------------------
-unsigned int Getpid(){
-  for (int i = 0; i < PROCESS_MAX_PROCS; i++){
-      if (strcmp(pcbs[i].name, currentPCB->name) == 0) return i;
+unsigned int Getpid()
+{
+  int i;
+  for (i = 0; i < PROCESS_MAX_PROCS; i++){
+      if (&pcbs[i] == currentPCB) return i;
   }
   return PROCESS_MAX_PROCS;
 }

@@ -21,3 +21,11 @@ dlxsim
 # Editor/IDE files
 .vscode/
 *.swp
+
+# System files
+.dotnet/corefx/cryptography/crls/
+ece695/lab1/apps/work/
+ece695/lab1/os/work/
+ece695/lab1/vm
+ece695/lab1/os/Makefile.depend
+

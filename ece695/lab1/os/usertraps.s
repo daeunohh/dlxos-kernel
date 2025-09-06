@@ -66,3 +66,11 @@ _Printf:
 	nop
 .endproc _Printf
 
+.proc _Getpid
+.global _Getpid
+_Getpid:		
+	trap	#0x440
+	jr	r31
+	nop
+.endproc _Getpid
+

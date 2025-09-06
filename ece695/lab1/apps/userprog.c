@@ -1,7 +1,12 @@
 #include "usertraps.h"
 
-void main (int x)
+void main (void)
 {
-  Printf("Hello World!\n");
+  unsigned int pid;
+
+  Printf("Get current pid \n");
+  pid = Getpid();
+  Printf("Current pid = %d\n", pid);
+
   while(1); // Use CTRL-C to exit the simulator
 }

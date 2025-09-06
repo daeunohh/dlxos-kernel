@@ -116,6 +116,12 @@ TrapPrintfHandler (uint32 *trapArgs, int sysMode)
 	  printfArgs[4], printfArgs[5], printfArgs[6], printfArgs[7]);
 }
 
+
+unsigned int
+GetCurrentPid(){
+  return Getpid();
+}
+
 //----------------------------------------------------------------------
 //
 //	doInterrupt
@@ -161,6 +167,13 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
       // indicating whether the trap was called from system mode.
       dbprintf ('t', "Got a printf trap!\n");
       TrapPrintfHandler (trapArgs, isr & DLX_STATUS_SYSMODE);
+      break;
+    case TRAP_PROCESS_GETPID:
+      // Call the trap printf handler and pass the arguments and a flag
+      // indicating whether the trap was called from system mode.
+      dbprintf ('t', "Got a getpid trap!\n");
+      GetCurrentPid();
+      // TrapPrintfHandler (trapArgs, isr & DLX_STATUS_SYSMODE);
       break;
     case TRAP_OPEN:
       // Get the arguments to the trap handler.  If this is a user mode trap,
@@ -266,3 +279,4 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
   // Note that this return may schedule a new process!
   intrreturn ();
 }
+
