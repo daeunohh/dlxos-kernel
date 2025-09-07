@@ -688,7 +688,11 @@ unsigned int Getpid()
 {
   int i;
   for (i = 0; i < PROCESS_MAX_PROCS; i++){
-      if (&pcbs[i] == currentPCB) return i;
+      printf ("My addr: %d \n", currentPCB);
+      printf ("%d \n", &pcbs[i]);
+      if (&pcbs[i] == currentPCB) {
+        return i;
+      }
   }
   return PROCESS_MAX_PROCS;
 }

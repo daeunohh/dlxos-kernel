@@ -1,4 +1,9 @@
+#!/bin/bash
+set -e  # 하나라도 실패하면 즉시 종료
+
 clear
+rm -rf apps/work/* os/work/* bin/*
+
 cd ~/ece695/lab1
 mainframer.sh 'cd os && make'
 mainframer.sh 'cd apps && make'

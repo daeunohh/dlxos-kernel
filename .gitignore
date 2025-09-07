@@ -29,3 +29,7 @@ ece695/lab1/os/work/
 ece695/lab1/vm
 ece695/lab1/os/Makefile.depend
 
+.bash_history
+.config/pulse/
+.lastlogin
+ece695/lab1.tar.gz

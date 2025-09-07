@@ -119,6 +119,7 @@ TrapPrintfHandler (uint32 *trapArgs, int sysMode)
 
 unsigned int
 GetCurrentPid(){
+  printf ("Getpid();\n");
   return Getpid();
 }
 
