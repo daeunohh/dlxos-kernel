@@ -70,6 +70,7 @@ _Printf:
 .global _Getpid
 _Getpid:		
 	trap	#0x440
+	lw      r2, 8(r29)
 	jr	r31
 	nop
 .endproc _Getpid

@@ -119,8 +119,8 @@ TrapPrintfHandler (uint32 *trapArgs, int sysMode)
 
 unsigned int
 GetCurrentPid(){
-  printf ("Getpid();\n");
-  return Getpid();
+  printf ("GetCurrentpid();\n");
+  return GetCurrentpid();
 }
 
 //----------------------------------------------------------------------
@@ -170,11 +170,9 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
       TrapPrintfHandler (trapArgs, isr & DLX_STATUS_SYSMODE);
       break;
     case TRAP_PROCESS_GETPID:
-      // Call the trap printf handler and pass the arguments and a flag
-      // indicating whether the trap was called from system mode.
       dbprintf ('t', "Got a getpid trap!\n");
-      GetCurrentPid();
-      // TrapPrintfHandler (trapArgs, isr & DLX_STATUS_SYSMODE);
+      ProcessSetResult(currentPCB, GetCurrentPid());
+      // printf ("pid in kernel = %d\n", GetCurrentPid());
       break;
     case TRAP_OPEN:
       // Get the arguments to the trap handler.  If this is a user mode trap,
