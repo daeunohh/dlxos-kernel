@@ -1,29 +1,35 @@
-# DLXOS Kernel
+Lab 1 – DLXOS
+==============
 
-An educational operating system kernel implemented on the DLX architecture, developed as part of the Purdue ECE Operating Systems course.  
-This project explores fundamental OS concepts by building and experimenting with a simplified kernel on a RISC-based architecture.
+## How to Build
+1. Move into the lab1 directory:
+   $ cd ~/ece695/lab1
+2. Build the kernel:
+   $ mainframer.sh 'cd os && make'
+3. Build the user program:
+   $ mainframer.sh 'cd apps && make'
 
-## Features
-- Process management: PCB, context switching, and scheduling
-- Memory management basics
-- System calls and trap handling
-- I/O subsystem simulation
-- Kernel build and execution on DLX simulator
+## How to Run
+Run the following command inside the lab1 directory:
+   $ dlxsim -x os/work/os.dlx.obj -a apps/work/userprog.dlx.obj
 
-## Technologies
-- C
-- GNU Make
-- DLX simulator (gcc-dlx, dlxsim)
+OR simply run the helper script:
+   $ ./mymake.sh
+This script automatically performs Clean → Build → Run.
 
-## Learning Outcomes
-Through this project I gained hands-on experience with:
-- Low-level OS design and implementation
-- Cross-compilation and debugging on a simulated architecture
-- Working with process control blocks and scheduling algorithms
-- Understanding kernel–user space separation
+## Notes about My Solution
+- Implemented a new system call: **Getpid()**
+  - `os/process.c`: Added `GetCurrentPid()` function.  
+    → calculates the PID by comparing `currentPCB` pointer against entries in the global `pcbs[]` array.
+  - `os/traps.c`: Added trap handler under `TRAP_PROCESS_GETPID`.  
+    → calls `ProcessSetResult(currentPCB, pid)` to pass result back to user space.
+  - `os/usertraps.s`: Added `_Getpid` assembly wrapper to invoke the new trap.
+  - `apps/userprog.c`: Test program that prints the current PID to verify correctness.
 
-## How to Build & Run
-```bash
-make clean
-make
-./dlxsim -x os.dlx.obj
+## Unusual Details
+- Implementation closely follows the style of the `Open` system call.
+- No unusual modifications beyond those required.
+
+## External Sources
+- Purdue ECE469 Lab 1 handout
+- Class lecture notes
