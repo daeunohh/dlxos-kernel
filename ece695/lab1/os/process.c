@@ -684,7 +684,7 @@ ProcessGetFromFile (int fd, unsigned char *buf, uint32 *addr, int max)
 //	follows that from the previous line of the file.
 //
 //----------------------------------------------------------------------
-unsigned int GetCurrentpid()
+unsigned int GetCurrentPid()
 {
   int i;
   for (i = 0; i < PROCESS_MAX_PROCS; i++){
